@@ -153,9 +153,13 @@ namespace StoreSystem
                 string Quantity = textBoxQuantity.Text;
                 string Price = textBoxPrice.Text;
                 string category = CategoryBox.SelectedItem.ToString();
+                string test;
                 foreach (DataGridViewRow row in DataGridStock.Rows)
                 {
-                    if (row.Cells["ID"].Value.ToString().Equals(textBoxID.Text))
+                    test = row.Cells["ID"].Value.ToString();
+                    
+                    test = test.Replace(" ", string.Empty);
+                    if (test == ID)
                     {
                         uniqe = false;
                         MessageBox.Show("ID has to be uniqe, the one you've chosen already exists.", "Can't add product", MessageBoxButtons.OK, MessageBoxIcon.Information);
