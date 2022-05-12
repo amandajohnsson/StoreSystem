@@ -45,12 +45,6 @@ namespace StoreSystem
         }
 
 
-
-        private void splitContainerStock_Panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void CategoryBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -324,6 +318,17 @@ namespace StoreSystem
             }
             if(exists == false)
                 MessageBox.Show("ID does not exist", "Can't remove product", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void buttonAPI_Click(object sender, EventArgs e)
+        {
+            DataGridStock.Rows.Clear();
+            producthandler.LoadAPI();
+            productList = new BindingList<Product>(producthandler.Products);
+            ProductSource = new BindingSource();
+            ProductSource.DataSource = productList;
+            DataGridStock.DataSource = ProductSource;
+            DataGridStock.Refresh();
         }
     }
 }

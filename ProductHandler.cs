@@ -16,13 +16,10 @@ namespace StoreSystem
     {
        
         internal List<Product> Products { get; set; } = new List<Product>();
-        internal List<string> SoldProducts { get; set; } = new List<string>();
 
         internal void LoadDatabase()
         {
-            //LoadAPI();
             LoadDatabase("ProductDB.csv");
-
             
         }
  
@@ -73,11 +70,31 @@ namespace StoreSystem
                                 foreach (XmlNode nodeChild in node.ChildNodes)
                                     myList.Add(nodeChild.InnerText);
                                 if (node.Name == "book")
+                                {
+                                    while (myList.Count != 8)
+                                        myList.Add("unknown");
                                     myList.ToArray();
-                                    Products.Add(ParseBook(myList.ToArray()));
+                                    Products.Add(ParseBookAPI(myList.ToArray()));
+                                }
+                                else if (node.Name == "game")
+                                {
+                                    while (myList.Count != 6)
+                                        myList.Add("unknown");
+                                    myList.ToArray();
+                                    Products.Add(ParseGameAPI(myList.ToArray()));
+                                }
+                                else if(node.Name == "movie")
+                                {
+                                    while (myList.Count != 7)
+                                        myList.Add("unknown");
+                                    myList.ToArray();
+                                    Products.Add(ParseMovieAPI(myList.ToArray()));
+                                }
                                 //Console.WriteLine(myList);                           
                             }
                         }
+                        else if(el.Name == "error")
+                            MessageBox.Show("Something went wrong when getting data", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -175,6 +192,20 @@ namespace StoreSystem
                 Genre = (Genre)Enum.Parse(typeof(Genre), lineElements[6], true),
                 FormatBook = (FormatBook)Enum.Parse(typeof(FormatBook), lineElements[7], true),
                 Language = lineElements[8],
+            };
+        }
+        private Book ParseBookAPI(string[] lineElements)
+        {
+            return new Book
+            {
+                ProductCategory = (ProductCategory)Enum.Parse(typeof(ProductCategory), lineElements[0], true),
+                ID = lineElements[1],
+                Name = lineElements[2],
+                Price = double.Parse(lineElements[3]),
+                Quantity = lineElements[4],            
+                Genre = (Genre)Enum.Parse(typeof(Genre), lineElements[5].Replace(" ", string.Empty), true),
+                FormatBook = (FormatBook)Enum.Parse(typeof(FormatBook), lineElements[6].Replace("-", string.Empty), true),
+                Language = lineElements[7],
 
             };
         }
@@ -190,9 +221,21 @@ namespace StoreSystem
                 Platform = (Platform)Enum.Parse(typeof(Platform), lineElements[5], true),
             };
         }
+        private Game ParseGameAPI(string[] lineElements)
+        {
+            return new Game
+            {
+                ProductCategory = (ProductCategory)Enum.Parse(typeof(ProductCategory), lineElements[0], true),
+                ID = lineElements[1],
+                Name = lineElements[2],
+                Price = double.Parse(lineElements[3].Replace(".", ",")),
+                Quantity = lineElements[4],
+                Platform = (Platform)Enum.Parse(typeof(Platform), lineElements[5].Replace(" ", string.Empty), true),
+            };
+        }
 
         private Movie ParseMovie(string[] lineElements)
-        {
+        {         
             return new Movie
             {
                 ProductCategory = (ProductCategory)Enum.Parse(typeof(ProductCategory), lineElements[0], true),
@@ -201,6 +244,19 @@ namespace StoreSystem
                 Name = lineElements[3],
                 Price = double.Parse(lineElements[4].Replace(".", ",")),
                 FormatMovie = (FormatMovie)Enum.Parse(typeof(FormatMovie), lineElements[5], true),
+                Playtime = lineElements[6],
+            };
+        }
+        private Movie ParseMovieAPI(string[] lineElements)
+        {
+            return new Movie
+            {
+                ProductCategory = (ProductCategory)Enum.Parse(typeof(ProductCategory), lineElements[0], true),
+                ID = lineElements[1],
+                Name = lineElements[2],
+                Price = double.Parse(lineElements[3].Replace(".", ",")),
+                Quantity = lineElements[4],               
+                FormatMovie = (FormatMovie)Enum.Parse(typeof(FormatMovie), lineElements[5].Replace("-", string.Empty), true),
                 Playtime = lineElements[6],
             };
         }
@@ -223,14 +279,7 @@ namespace StoreSystem
 
         }
 
-        internal void WritepurchaseDB()
-        {
-
-        }
-        internal void savePurchase(string purchase)
-        {
-            SoldProducts.Add(purchase);
-        }
+    
         internal void LoadSoldProducts()
         {
             var allLines = File.ReadAllLines("SoldProducts.txt");

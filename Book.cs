@@ -28,10 +28,14 @@ namespace StoreSystem
 
     enum Genre
     {
+        History,
         Historia,
         Äventyr,
+        Adventure,
         Kursliteratur,
+        Studymaterials,
         Skräck,
+        Horror,
         Noir,
         unknown
     }
@@ -40,6 +44,8 @@ namespace StoreSystem
         Pocket,
         Inbunden,
         EBok,
+        EBook,
+        Bound,
         unknown
     }
 }

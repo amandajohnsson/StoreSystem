@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.splitContainerStock = new System.Windows.Forms.SplitContainer();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBoxNumber = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxUpdate = new System.Windows.Forms.TextBox();
@@ -67,8 +69,7 @@
             this.dropButton = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
-            this.textBoxNumber = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.buttonAPI = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerStock)).BeginInit();
             this.splitContainerStock.Panel1.SuspendLayout();
             this.splitContainerStock.Panel2.SuspendLayout();
@@ -96,6 +97,7 @@
             // splitContainerStock.Panel2
             // 
             this.splitContainerStock.Panel2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.splitContainerStock.Panel2.Controls.Add(this.buttonAPI);
             this.splitContainerStock.Panel2.Controls.Add(this.label2);
             this.splitContainerStock.Panel2.Controls.Add(this.label1);
             this.splitContainerStock.Panel2.Controls.Add(this.buttonRemoveProduct);
@@ -126,10 +128,29 @@
             this.splitContainerStock.Panel2.Controls.Add(this.Category);
             this.splitContainerStock.Panel2.Controls.Add(this.Price);
             this.splitContainerStock.Panel2.Controls.Add(this.ProductName);
-            this.splitContainerStock.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainerStock_Panel2_Paint);
             this.splitContainerStock.Size = new System.Drawing.Size(899, 535);
             this.splitContainerStock.SplitterDistance = 455;
             this.splitContainerStock.TabIndex = 0;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(238, 457);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(69, 20);
+            this.label5.TabIndex = 41;
+            this.label5.Text = "Number:";
+            // 
+            // textBoxNumber
+            // 
+            this.textBoxNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxNumber.Location = new System.Drawing.Point(242, 483);
+            this.textBoxNumber.Name = "textBoxNumber";
+            this.textBoxNumber.Size = new System.Drawing.Size(75, 26);
+            this.textBoxNumber.TabIndex = 40;
             // 
             // label4
             // 
@@ -214,7 +235,7 @@
             // 
             this.buttonRemoveProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonRemoveProduct.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.buttonRemoveProduct.Location = new System.Drawing.Point(179, 483);
+            this.buttonRemoveProduct.Location = new System.Drawing.Point(270, 483);
             this.buttonRemoveProduct.Name = "buttonRemoveProduct";
             this.buttonRemoveProduct.Size = new System.Drawing.Size(146, 43);
             this.buttonRemoveProduct.TabIndex = 2;
@@ -505,25 +526,17 @@
             this.dropButton.Size = new System.Drawing.Size(75, 23);
             this.dropButton.TabIndex = 0;
             // 
-            // textBoxNumber
+            // buttonAPI
             // 
-            this.textBoxNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxNumber.Location = new System.Drawing.Point(242, 483);
-            this.textBoxNumber.Name = "textBoxNumber";
-            this.textBoxNumber.Size = new System.Drawing.Size(75, 26);
-            this.textBoxNumber.TabIndex = 40;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(238, 457);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(69, 20);
-            this.label5.TabIndex = 41;
-            this.label5.Text = "Number:";
+            this.buttonAPI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonAPI.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buttonAPI.Location = new System.Drawing.Point(18, 483);
+            this.buttonAPI.Name = "buttonAPI";
+            this.buttonAPI.Size = new System.Drawing.Size(146, 43);
+            this.buttonAPI.TabIndex = 39;
+            this.buttonAPI.Text = "Update from API";
+            this.buttonAPI.UseVisualStyleBackColor = false;
+            this.buttonAPI.Click += new System.EventHandler(this.buttonAPI_Click);
             // 
             // UserControlStock
             // 
@@ -587,5 +600,6 @@
         private System.Windows.Forms.TextBox textBoxRemoveProduct;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBoxNumber;
+        private System.Windows.Forms.Button buttonAPI;
     }
 }

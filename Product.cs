@@ -19,7 +19,10 @@ namespace StoreSystem
     enum ProductCategory
     {
         Game,
+        game,
         Book,
-        Movie
+        book,
+        Movie,
+        movie,
     }
 }

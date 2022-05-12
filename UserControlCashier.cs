@@ -127,10 +127,7 @@ namespace StoreSystem
         {
             if (dataGridViewCart.Rows.Count > 0)
             {            
-                dt.Clear();
-                dataGridViewCart.Refresh();
-                dataGridViewCart.DataSource = dt;
-                textBoxTotalPrice.Clear();
+               
             }
            
         }
